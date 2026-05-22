@@ -1,0 +1,14 @@
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\obj\Debug\net10.0\Asset Tracking System.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\obj\Debug\net10.0\Asset Tracking System.AssemblyInfoInputs.cache
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\obj\Debug\net10.0\Asset Tracking System.AssemblyInfo.cs
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\obj\Debug\net10.0\Asset Tracking System.csproj.CoreCompileInputs.cache
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\bin\Debug\net10.0\Asset Tracking System.exe
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\bin\Debug\net10.0\Asset Tracking System.deps.json
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\bin\Debug\net10.0\Asset Tracking System.runtimeconfig.json
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\bin\Debug\net10.0\Asset Tracking System.dll
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\bin\Debug\net10.0\Asset Tracking System.pdb
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\obj\Debug\net10.0\Asset Tracking System.dll
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\obj\Debug\net10.0\refint\Asset Tracking System.dll
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\obj\Debug\net10.0\Asset Tracking System.pdb
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\obj\Debug\net10.0\Asset Tracking System.genruntimeconfig.cache
+C:\Users\henri\source\repos\UTV-25\Projects\Asset Tracking System\Asset Tracking System\obj\Debug\net10.0\ref\Asset Tracking System.dll
