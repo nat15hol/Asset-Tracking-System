@@ -6,6 +6,7 @@ class Program
 {
     static void Main()
     {
+        LiveCurrency.FetchRates();
         AssetManager manager = new AssetManager();
 
         bool running = true;
@@ -66,14 +67,7 @@ class AssetManager
     {
         Asset asset = new Asset();
 
-        Console.Write("Price in SEK: ");
-        asset.PriceLocal = double.Parse(Console.ReadLine());
 
-        asset.PriceUSD = LiveCurrency.Convert(
-            asset.PriceLocal,
-            "SEK",
-            "USD"
-        );
 
         Console.Write("Type: ");
         asset.Type = Console.ReadLine();
@@ -89,6 +83,14 @@ class AssetManager
 
         Console.Write("Purchase Date (yyyy-mm-dd): ");
         asset.PurchaseDate = DateTime.Parse(Console.ReadLine());
+
+        Console.Write("Price in SEK: ");
+        asset.PriceLocal = double.Parse(Console.ReadLine());
+
+        asset.PriceUSD = Math.Round(
+            LiveCurrency.Convert(asset.PriceLocal, "SEK", "USD"),
+            2
+        );
 
         assets.Add(asset);
 

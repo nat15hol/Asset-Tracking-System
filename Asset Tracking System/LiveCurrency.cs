@@ -30,7 +30,12 @@ namespace WeeklyMiniProject3
                             string currencyCode = reader.Value;
 
                             reader.MoveToNextAttribute();
-                            double rate = double.Parse(reader.Value);
+
+                            double rate = double.Parse(
+                                reader.Value,
+                                CultureInfo.InvariantCulture
+                            );
+
                             currencyList.Add(new CurrencyObj(currencyCode, rate));
                         }
                     }
