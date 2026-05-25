@@ -112,7 +112,10 @@ class AssetManager
     public void ShowAssets()
     {
         Console.WriteLine("\n=== ASSETS ===\n");
-
+        Console.WriteLine(
+$"{"Type",-15} | {"Brand",-15} | {"Model",-20} | {"Office",-10} | {"Price (SEK)",-10} | {"Price (USD)",-10} | {"Date",-12} | {"Status",-10}"
+);
+        Console.WriteLine(new string('-', 121));
         foreach (Asset asset in assets)
         {
             DateTime endOfLife = asset.PurchaseDate.AddYears(3);
@@ -137,8 +140,8 @@ class AssetManager
                 $"{asset.Brand,-15} | " +
                 $"{asset.Model,-20} | " +
                 $"{asset.Office,-10} | " +
-                $"{asset.PriceLocal,-10} | " +
-                $"{asset.PriceUSD,-10} USD | " +
+                $"{asset.PriceLocal,-11} | " +
+                $"{asset.PriceUSD,-7} USD | " +
                 $"{asset.PurchaseDate.ToShortDateString(),-12} | " +
                 $"{asset.Status,-10}"
             );
@@ -148,6 +151,11 @@ class AssetManager
     public void ShowSortedAssetsByDate()
     {
         Console.WriteLine("\n=== SORTED ASSETS ===\n");
+        Console.WriteLine(
+$"{"Type",-15} | {"Brand",-15} | {"Model",-20} | {"Office",-10} | {"Price (SEK)",-10} | {"Price (USD)",-10} | {"Date",-12} | {"Status",-10}"
+);
+        Console.WriteLine(new string('-', 121));
+
 
         var sortedAssets = assets
             .OrderBy(a => a.PurchaseDate)
