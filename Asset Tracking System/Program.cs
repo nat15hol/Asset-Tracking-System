@@ -18,7 +18,8 @@ class Program
             Console.WriteLine("=== ASSET TRACKING SYSTEM ===");
             Console.WriteLine("1. Add Asset");
             Console.WriteLine("2. Show Assets");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("3. Show Assets (Sorted by date)");
+            Console.WriteLine("4. Exit");
 
             Console.Write("\nSelect option: ");
             string choice = Console.ReadLine();
@@ -34,6 +35,10 @@ class Program
                     break;
 
                 case "3":
+                    manager.ShowSortedAssets();
+                    break;
+
+                case "4":
                     running = false;
                     break;
 
@@ -57,6 +62,7 @@ class Asset
     public double PriceLocal { get; set; }
     public double PriceUSD { get; set; }
     public string Office { get; set; }
+    public string Status { get; set; }
 }
 // double result = LiveCurrency.Convert(50, "SEK", "USD");
 class AssetManager
@@ -66,8 +72,6 @@ class AssetManager
     public void AddAsset()
     {
         Asset asset = new Asset();
-
-
 
         Console.Write("Type: ");
         asset.Type = Console.ReadLine();
@@ -92,17 +96,69 @@ class AssetManager
             2
         );
 
+        // asset.Status = DateTime.Parse();
+
         assets.Add(asset);
 
         Console.WriteLine("\nAsset added successfully.");
     }
-    
+
     public void ShowAssets()
     {
         Console.WriteLine("\n=== ASSETS ===\n");
 
         foreach (Asset asset in assets)
         {
+            DateTime endOfLife = asset.PurchaseDate.AddYears(3);
+            TimeSpan remaining = endOfLife - DateTime.Now;
+            if (remaining.TotalDays < 90)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                asset.Status = "Critical";
+            }
+            else if (remaining.TotalDays < 180)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                asset.Status = "Approaching";
+            }
+            else
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                asset.Status = "OK";
+            }
+            Console.WriteLine(
+                $"{asset.Type,-15} | " +
+                $"{asset.Brand,-15} | " +
+                $"{asset.Model,-20} | " +
+                $"{asset.Office,-10} | " +
+                $"{asset.PriceLocal,-10} | " +
+                $"{asset.PriceUSD,-10} USD | " +
+                $"{asset.PurchaseDate.ToShortDateString(),-12} | " +
+                $"{asset.Status,-10}"
+            );
+            Console.ResetColor();
+        }
+    }
+    public void ShowSortedAssets()
+    {
+        Console.WriteLine("\n=== SORTED ASSETS ===\n");
+
+        var sortedAssets = assets
+            .OrderBy(a => a.PurchaseDate)
+            .ToList();
+
+        foreach (Asset asset in sortedAssets)
+        {
+            DateTime endOfLife = asset.PurchaseDate.AddYears(3);
+            TimeSpan remaining = endOfLife - DateTime.Now;
+            if (remaining.TotalDays < 90)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+            }
+            else if (remaining.TotalDays < 180)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
             Console.WriteLine(
                 $"{asset.Type,-15} | " +
                 $"{asset.Brand,-15} | " +
@@ -112,9 +168,13 @@ class AssetManager
                 $"{asset.PriceUSD,-10} USD | " +
                 $"{asset.PurchaseDate.ToShortDateString(),-12}"
             );
+            Console.ResetColor();
         }
     }
 }
+
+
+
 
 class CurrencyObj
 {
