@@ -1,4 +1,8 @@
-﻿using System;
+﻿// Asset Tracking System
+// Author: Henrik Oldehed
+// Created: 2026-05-19
+
+using System;
 using System.Collections.Generic;
 using WeeklyMiniProject3;
 
@@ -19,7 +23,8 @@ class Program
             Console.WriteLine("1. Add Asset");
             Console.WriteLine("2. Show Assets");
             Console.WriteLine("3. Show Assets (Sorted by date)");
-            Console.WriteLine("4. Exit");
+            Console.WriteLine("4. Show Assets (Sorted by type)");
+            Console.WriteLine("5. Exit");
 
             Console.Write("\nSelect option: ");
             string choice = Console.ReadLine();
@@ -35,10 +40,13 @@ class Program
                     break;
 
                 case "3":
-                    manager.ShowSortedAssets();
+                    manager.ShowSortedAssetsByDate();
+                    break;
+                case "4":
+                    manager.ShowSortedAssetsByType();
                     break;
 
-                case "4":
+                case "5":
                     running = false;
                     break;
 
@@ -96,8 +104,6 @@ class AssetManager
             2
         );
 
-        // asset.Status = DateTime.Parse();
-
         assets.Add(asset);
 
         Console.WriteLine("\nAsset added successfully.");
@@ -114,17 +120,17 @@ class AssetManager
             if (remaining.TotalDays < 90)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                asset.Status = "Critical";
+                asset.Status = "RED";
             }
             else if (remaining.TotalDays < 180)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                asset.Status = "Approaching";
+                asset.Status = "YELLOW";
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                asset.Status = "OK";
+                asset.Status = " ";
             }
             Console.WriteLine(
                 $"{asset.Type,-15} | " +
@@ -139,7 +145,7 @@ class AssetManager
             Console.ResetColor();
         }
     }
-    public void ShowSortedAssets()
+    public void ShowSortedAssetsByDate()
     {
         Console.WriteLine("\n=== SORTED ASSETS ===\n");
 
@@ -159,6 +165,33 @@ class AssetManager
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
             }
+            Console.WriteLine(
+                $"{asset.Type,-15} | " +
+                $"{asset.Brand,-15} | " +
+                $"{asset.Model,-20} | " +
+                $"{asset.Office,-10} | " +
+                $"{asset.PriceLocal,-10} | " +
+                $"{asset.PriceUSD,-10} USD | " +
+                $"{asset.PurchaseDate.ToShortDateString(),-12}"
+            );
+            Console.ResetColor();
+        }
+    }
+
+
+
+
+    public void ShowSortedAssetsByType()
+    {
+        Console.WriteLine("\n=== SORTED ASSETS ===\n");
+
+        var sortedAssets = assets
+            .OrderBy(a => a.Type)
+            .ToList();
+
+        foreach (Asset asset in sortedAssets)
+        {
+
             Console.WriteLine(
                 $"{asset.Type,-15} | " +
                 $"{asset.Brand,-15} | " +
